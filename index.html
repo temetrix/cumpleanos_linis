@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Feliz Cumpleaños Linis 🎂</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<base target="_blank">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PANTALLA DE INICIO / WELCOME SCREEN          -->
+    <!-- ============================================ -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <div class="welcome-icon">🎁</div>
+            <h1 class="welcome-title">Tengo algo especial para ti...</h1>
+            <p class="welcome-subtitle">Una sorpresa que he preparado con mucho cariño</p>
+            <button id="open-surprise-btn" class="btn-open">
+                <span>Abrir sorpresa</span>
+                <span class="btn-icon">🎁</span>
+            </button>
+        </div>
+        <div class="floating-hearts-welcome"></div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CONTENIDO PRINCIPAL                           -->
+    <!-- ============================================ -->
+    <div id="main-content" class="main-content hidden">
+
+        <!-- CANVAS DE PARTÍCULAS DE FONDO -->
+        <canvas id="particles-canvas"></canvas>
+
+        <!-- NAVEGACIÓN FLOTANTE -->
+        <nav class="floating-nav">
+            <a href="#hero" class="nav-link active">Inicio</a>
+            <a href="#mensaje" class="nav-link">Mensaje</a>
+            <a href="#galeria" class="nav-link">Galería</a>
+            <a href="#timeline" class="nav-link">Momentos</a>
+            <a href="#carta" class="nav-link">Carta</a>
+        </nav>
+
+        <!-- ============================================ -->
+        <!-- HERO SECTION                                  -->
+        <!-- ============================================ -->
+        <section id="hero" class="hero-section">
+            <div class="hero-particles" id="hero-particles"></div>
+            <div class="hero-content">
+                <div class="hero-badge animate-in">🎂 Celebración Especial 🎂</div>
+                <h1 class="hero-title animate-in">
+                    <span class="title-line">Feliz Cumpleaños</span>
+                    <span class="title-name">Linis</span>
+                </h1>
+                <p class="hero-subtitle animate-in">
+                    Hoy celebramos a una persona increíble que ilumina la vida de quienes la rodean.
+                </p>
+                <div class="hero-stats animate-in">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="18">0</span>
+                        <span class="stat-label">Años de vida</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="365">0</span>
+                        <span class="stat-label">Días de magia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="8760">0</span>
+                        <span class="stat-label">Horas de alegría</span>
+                    </div>
+                </div>
+                <div class="scroll-indicator animate-in">
+                    <span>Descubre más</span>
+                    <div class="scroll-arrow">↓</div>
+                </div>
+            </div>
+            <div class="floating-balloons" id="floating-balloons"></div>
+            <div class="confetti-container" id="confetti-container"></div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SECCIÓN DE MENSAJE ESPECIAL                   -->
+        <!-- ============================================ -->
+        <section id="mensaje" class="mensaje-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-tag">✨ Mensaje Especial</span>
+                <h2 class="section-title">Para Ti</h2>
+            </div>
+            <div class="mensaje-card glass-card scroll-reveal">
+                <div class="card-decoration top-left">✨</div>
+                <div class="card-decoration top-right">💖</div>
+                <div class="card-decoration bottom-left">🌟</div>
+                <div class="card-decoration bottom-right">💫</div>
+                <div class="card-content">
+                    <div class="card-icon">💌</div>
+                    <p class="mensaje-texto">
+                        Cada momento compartido contigo es un regalo.<br><br>
+                        Tu alegría, tu sonrisa y tu forma de ser hacen que el mundo sea un lugar mejor.<br><br>
+                        Espero que este nuevo año de vida esté lleno de felicidad, sueños cumplidos y momentos inolvidables.<br><br>
+                        <span class="mensaje-highlight">¡Feliz cumpleaños!</span>
+                    </p>
+                    <div class="card-signature">
+                        <span class="signature-line">Con muchisimo cariño y aprecio</span>
+                        <span class="signature-name">Tu fiel amigo Felipe</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- GALERÍA DE FOTOS                              -->
+        <!-- ============================================ -->
+        <section id="galeria" class="galeria-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-tag">📸 Recuerdos</span>
+                <h2 class="section-title">Galería de Momentos</h2>
+            </div>
+            <div class="galeria-container scroll-reveal">
+                <div class="galeria-track" id="galeria-track">
+                    <!-- Las imágenes se generan dinámicamente con placeholders coloridos -->
+                </div>
+                <div class="galeria-controls">
+                    <button class="galeria-btn prev" id="galeria-prev">‹</button>
+                    <div class="galeria-dots" id="galeria-dots"></div>
+                    <button class="galeria-btn next" id="galeria-next">›</button>
+                </div>
+            </div>
+            <!-- Lightbox para vista ampliada -->
+            <div class="lightbox" id="lightbox">
+                <div class="lightbox-overlay"></div>
+                <div class="lightbox-content">
+                    <button class="lightbox-close" id="lightbox-close">×</button>
+                    <img id="lightbox-img" src="" alt="">
+                    <div class="lightbox-caption" id="lightbox-caption"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- LÍNEA DE TIEMPO / TIMELINE                    -->
+        <!-- ============================================ -->
+        <section id="timeline" class="timeline-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-tag">🌟 Momentos</span>
+                <h2 class="section-title">Momentos Especiales</h2>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-items">
+                    <div class="timeline-item scroll-reveal left">
+                        <div class="timeline-dot">🎂</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">Hoy</div>
+                            <h3 class="timeline-title">Tu Cumpleaños</h3>
+                            <p class="timeline-desc">El día más especial del año, celebrando tu existencia y todo lo que eres.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item scroll-reveal right">
+                        <div class="timeline-dot">💫</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">Siempre</div>
+                            <h3 class="timeline-title">Tu Sonrisa</h3>
+                            <p class="timeline-desc">Esa sonrisa que ilumina cualquier habitación y alegra los días grises.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item scroll-reveal left">
+                        <div class="timeline-dot">🌈</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">Cada día</div>
+                            <h3 class="timeline-title">Tu Alegría</h3>
+                            <p class="timeline-desc">La forma en que haces que todo sea mejor solo con estar presente.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item scroll-reveal right">
+                        <div class="timeline-dot">💖</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">Para siempre</div>
+                            <h3 class="timeline-title">Nuestros Recuerdos</h3>
+                            <p class="timeline-desc">Cada momento juntos es un tesoro que guardo en mi corazón.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item scroll-reveal left">
+                        <div class="timeline-dot">✨</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">El futuro</div>
+                            <h3 class="timeline-title">Nuevos Sueños</h3>
+                            <p class="timeline-desc">Los sueños que aún nos quedan por cumplir juntos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item scroll-reveal right">
+                        <div class="timeline-dot">🌟</div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-date">Eternamente</div>
+                            <h3 class="timeline-title">Mi Carino</h3>
+                            <p class="timeline-desc">Un cariño que crece cada día más por la persona maravillosa que eres.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- CARTA SECRETA                                 -->
+        <!-- ============================================ -->
+        <section id="carta" class="carta-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-tag">💌 Secreta</span>
+                <h2 class="section-title">Carta Especial</h2>
+            </div>
+            <div class="carta-container scroll-reveal">
+                <button id="btn-carta" class="btn-carta">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body">
+                            <div class="envelope-seal">💌</div>
+                        </div>
+                    </div>
+                    <span class="btn-carta-text">Leer carta</span>
+                </button>
+            </div>
+            <!-- Modal de la carta -->
+            <div class="carta-modal" id="carta-modal">
+                <div class="carta-modal-overlay"></div>
+                <div class="carta-modal-content">
+                    <button class="carta-modal-close" id="carta-modal-close">×</button>
+                    <div class="carta-paper">
+                        <div class="carta-header">
+                            <span class="carta-stamp">💌</span>
+                            <span class="carta-date">12 de Junio, 2026</span>
+                        </div>
+                        <div class="carta-body">
+                            <p class="carta-saludo">Querida Linis,</p>
+                            <p class="carta-parrafo">
+                                En este día tan especial, quiero que sepas lo mucho que significas para mí. No hay palabras suficientes para describir la alegría que traes a mi vida.
+                            </p>
+                            <p class="carta-parrafo">
+                                Eres una persona excepcional, con un corazón enorme y una luz interior que ilumina todo a tu alrededor. Tu bondad, tu fuerza y tu belleza, tanto interior como exterior, me inspiran cada día.
+                            </p>
+                            <p class="carta-parrafo">
+                                Gracias por ser quien eres. Gracias por cada risa compartida, por cada momento de apoyo, por cada gesto de cariño. Gracias por hacer que mi mundo sea un lugar mejor.
+                            </p>
+                            <p class="carta-parrafo">
+                                Hoy celebro no solo tu cumpleaños, sino también la bendición de tenerte en mi vida. Deseo que este nuevo año te traiga todo lo que mereces: amor, salud, éxito y momentos inolvidables.
+                            </p>
+                            <p class="carta-parrafo carta-closing">
+                                Feliz cumpleaños, mi persona especial. 🎂✨
+                            </p>
+                        </div>
+                        <div class="carta-footer">
+                            <span class="carta-firma">Con todo mi cariño,</span>
+                            <span class="carta-nombre">Tu fiel amigo Felipe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- REPRODUCTOR DE MÚSICA                         -->
+        <!-- ============================================ -->
+        <div class="music-player" id="music-player">
+            <div class="music-player-toggle" id="music-toggle">
+                <span class="music-icon">🎵</span>
+            </div>
+            <div class="music-player-panel" id="music-panel">
+                <div class="music-info">
+                    <div class="music-cover">🎵</div>
+                    <div class="music-details">
+                        <span class="music-title">Canción Especial</span>
+                        <span class="music-artist">Para Linis</span>
+                    </div>
+                </div>
+                <div class="music-controls">
+                    <button class="music-btn" id="music-play">▶</button>
+                </div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar" id="music-progress-bar">
+                        <div class="music-progress-fill" id="music-progress-fill"></div>
+                    </div>
+                    <div class="music-time">
+                        <span id="music-current">0:00</span>
+                        <span id="music-duration">0:00</span>
+                    </div>
+                </div>
+                <div class="music-volume">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="70">
+                </div>
+                <audio id="audio-player" preload="metadata">
+                    <source src="musica.mp3" type="audio/mpeg">
+                    Tu navegador no soporta audio HTML5.
+                </audio>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SECCIÓN FINAL / FOOTER                        -->
+        <!-- ============================================ -->
+        <section id="final" class="final-section">
+            <div class="final-content scroll-reveal">
+                <div class="final-hearts">
+                    <span class="final-heart">❤️</span>
+                    <span class="final-heart">💖</span>
+                    <span class="final-heart">💕</span>
+                    <span class="final-heart">💗</span>
+                    <span class="final-heart">💝</span>
+                </div>
+                <h2 class="final-title">Gracias por existir</h2>
+                <p class="final-subtitle">
+                    Que este sea solo el comienzo de un año lleno de felicidad.
+                </p>
+                <div class="final-counter">
+                    <div class="counter-item">
+                        <span class="counter-value" id="counter-years">0</span>
+                        <span class="counter-label">Años</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="counter-months">0</span>
+                        <span class="counter-label">Meses</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="counter-days">0</span>
+                        <span class="counter-label">Días</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="counter-hours">0</span>
+                        <span class="counter-label">Horas</span>
+                    </div>
+                </div>
+                <div class="final-message">
+                    <p>Te deseo el mundo entero, porque eso es lo que mereces. 🌎✨</p>
+                </div>
+            </div>
+            <div class="floating-hearts-final" id="floating-hearts-final"></div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- FOOTER                                        -->
+        <!-- ============================================ -->
+        <footer class="site-footer">
+            <p>Hecho con ❤️ para Linis · 2026</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
