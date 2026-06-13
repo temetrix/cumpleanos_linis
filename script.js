@@ -529,10 +529,19 @@ const galleryData = [
         function scrollToItem(index) {
             if (index < 0) index = items.length - 1;
             if (index >= items.length) index = 0;
-
+            
             currentIndex = index;
-            items[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
+            
+            // Calcular posición exacta sin mover la página
+            const itemWidth = items[0].offsetWidth + 24;
+            const scrollPosition = index * itemWidth;
+            
+            // Solo mueve el carrusel, NO la página
+            track.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
